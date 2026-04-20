@@ -2,27 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
-    <title>Dev Crew Course Index</title>
+    <title>Course List</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-    <h1>College Course List</h1>
-        <form>
-            <div>
-                <button type="button">Add New Course</button>
-            </div>
-            <label>Choose a course:</label>
-            <select id="courseList">
-                <option value=" "> </option>
-            </select>
-            
-            <div id="classDetail">
-                <label>Course Num: </label> <span>SDEV255</span><br>
-                <label>Course Name: </label> <span> Web Application Development</span><br>
-                <label>Credits: </label> <span>3</span><br>
-                <label>Description: </label> <span>Students will work together in teams to create a web app. </span><br>
-            </div>
-        </form>
+
+<nav class="navbar">
+    <h2 class="logo">DevCrew</h2>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="add-course.html">Add Course</a>
+    </div>
+</nav>
+<div class="hero">
+    <h1>Course Management Dashboard</h1>
+    <p>Manage, view, and organize college courses easily</p>
+
+    <a href="add-course.html" class="primary-btn">+ Add New Course</a>
+</div>
+<div class="stats">
+    <div class="card">
+        <h3 id="totalCourses">0</h3>
+        <p>Total Courses</p>
+    </div>
+
+    <div class="card">
+        <h3>Active</h3>
+        <p>Status</p>
+    </div>
+</div>
+<div class="section">
+    <h2>Available Courses</h2>
+    <ul id="courseList"></ul>
+</div>
 </body>
 </html>
