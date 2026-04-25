@@ -3,31 +3,31 @@ const express = require("express")
 var cors = require('cors')
 const app = express()
 const router = express.Router()
+const bodyParser = require('body-parser')
+const Student = require('./models/students')
+const Course = require('./models/courses')
 app.use(cors())
 
-router.get("/courses", function(req, res) {
-    const courses = [
-        {
-            courseNum : "SDEV255",
-            courseName : "Web Application Development",
-            credits : 3,
-            description : "Students will work together in teams to create a web app."
-        },
-        {
-            courseNum : "SDEV260",
-            courseName : "iOS Swift Application Development",
-            credits : 3,
-            description : "Students will build a foundation in programming fundamentals using Swift."
-        },
-        {
-             courseNum : "SDEV265",
-            courseName : "iOS Swift Application Development",
-            credits : 3,
-            description : "Students will build a foundation in programming fundamentals using Swift."
-        }
-    ]
+router.get("/students", async(req, res) => {
+    try {
+        const students = await Student.find({})
+        res.send(students)
+        console.log("Student list: " + students)
+    }
+    catch (err) {
+        console.log(err)
+    }   
+})
 
-    res.json(courses)
+router.get("/courses", async(req, res) => {
+    try {
+        const courses = await Course.find({})
+        res.send(courses)
+        console.log("Course list: " + courses)
+    }
+    catch (err) {
+        console.log(err)
+    }
 })
 
 app.use("/api", router)
