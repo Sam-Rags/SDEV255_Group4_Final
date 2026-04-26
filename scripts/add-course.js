@@ -12,7 +12,7 @@ async function addCourse() {
         description:    document.querySelector("#description").value
     }
     // response template from server using POST method
-    const response  = await fetch("http://localhost:3000/api/courses", {
+    const response  = await fetch("https://sdev255-group4-final.onrender.com/api/courses/", {
     method: "POST",
     headers: {
         "Content-Type" : "application/json"

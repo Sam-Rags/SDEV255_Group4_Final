@@ -3,7 +3,7 @@ addEventListener("DOMContentLoaded", async function() {
     const courseID = urlparm.get('id')
     console.log(courseID)
 
-    const response = await fetch("http://localhost:3000/api/courses/" + courseID)
+    const response = await fetch("https://sdev255-group4-final.onrender.com/api/courses/" + courseID)
     const course = await response.json()
     console.log(course)
 

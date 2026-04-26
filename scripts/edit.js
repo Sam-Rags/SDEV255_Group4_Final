@@ -3,7 +3,7 @@ addEventListener("DOMContentLoaded", async function() {
     document.querySelector("#deleteCourse").addEventListener("click", deleteCourse)
     const urlparam = new URLSearchParams(window.location.search)
     const courseID = urlparam.get('id')
-    const response = await fetch("http://localhost:3000/api/courses/" + courseID)
+    const response = await fetch("https://sdev255-group4-final.onrender.com/api/courses/" + courseID)
 
     if (response.ok) {
         let course = await response.json()
@@ -27,7 +27,7 @@ addEventListener("DOMContentLoaded", async function() {
             description:    document.querySelector("#description").value
         }
 
-            const response = await fetch("http://localhost:3000/api/courses/" + courseID, {
+            const response = await fetch("https://sdev255-group4-final.onrender.com/api/courses/" + courseID, {
                 method: "DELETE",
                 
             })
@@ -48,7 +48,7 @@ addEventListener("DOMContentLoaded", async function() {
             credits:        document.querySelector("#credits").value,
             description:    document.querySelector("#description").value
         }
-    const response = await fetch("http://localhost:3000/api/courses/" + courseID, {
+    const response = await fetch("https://sdev255-group4-final.onrender.com/api/courses/" + courseID, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
