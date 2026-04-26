@@ -9,8 +9,4 @@ addEventListener("DOMContentLoaded", async function() {
     }
 
     document.querySelector("#courseList").innerHTML = html;
-<<<<<<< HEAD
 })
-=======
-})
->>>>>>> 95fb4a1fd6423d6858135cf1ccdc214c6b5c5b14
