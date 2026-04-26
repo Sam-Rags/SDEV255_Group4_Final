@@ -1,5 +1,6 @@
 addEventListener("DOMContentLoaded", async function() {
     document.querySelector("#updateCourse").addEventListener("click", updateCourse)
+    document.querySelector("#deleteCourse").addEventListener("click", deleteCourse)
     const urlparam = new URLSearchParams(window.location.search)
     const courseID = urlparam.get('id')
     const response = await fetch("http://localhost:3000/api/courses/" + courseID)
@@ -12,6 +13,30 @@ addEventListener("DOMContentLoaded", async function() {
         document.querySelector("#credits").value = course.credits
         document.querySelector("#description").value = course.description
 
+    }
+
+    async function deleteCourse() {
+        event.preventDefault()
+        if (confirm("Are you sure?")) {
+            
+            const courseId = document.querySelector("#courseId").value
+            const course = {
+            courseNumber:   document.querySelector("#courseNum").value,
+            courseName:     document.querySelector("#courseName").value,
+            credits:        document.querySelector("#credits").value,
+            description:    document.querySelector("#description").value
+        }
+
+            const response = await fetch("http://localhost:3000/api/courses/" + courseID, {
+                method: "DELETE",
+                
+            })
+            alert("Course: " + courseID + " successfully deleted.")
+            document.querySelector("form").reset()
+        }
+        else {
+            alert("Delete cancelled")
+        }
     }
 
     async function updateCourse() {
@@ -35,7 +60,7 @@ addEventListener("DOMContentLoaded", async function() {
         alert("Course updated!")
     }
     else {
-        document.querySelector("#error").innerHTML = "Cannot update song"
+        document.querySelector("#error").innerHTML = "Cannot update course"
     }
 
     }

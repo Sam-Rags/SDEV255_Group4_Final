@@ -72,6 +72,23 @@ router.put("/courses/:id", async(req, res) => {
     }
 })
 
+// Delete a course by ID
+router.delete("/courses/:id", async(req, res) => {
+    try {
+        const course = req.body
+        await Course.deleteOne({_id: req.params.id }, course)
+        if (result.deletedCount === 0 ) {
+            res.sendStatus(404)
+        }
+        else {
+            res.sendStatus(204)
+        }
+    }
+    catch (err) {
+        res.status(400).send(err.message)
+    }
+})
+
 // Get the instructor list from the DB
 router.get("/instructors", async(req, res) => {
     try {
