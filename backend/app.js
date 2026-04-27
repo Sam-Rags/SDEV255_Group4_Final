@@ -76,16 +76,20 @@ router.put("/courses/:id", async(req, res) => {
 // Delete a course by ID
 router.delete("/courses/:id", async(req, res) => {
     try {
-        const course = req.body
-        await Course.deleteOne({_id: req.params.id }, course)
-        if (result.deletedCount === 0 ) {
-            res.sendStatus(404)
+        const mongoose = require('mongoose');
+
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: "Invalid ID format" });
         }
-        else {
-            res.sendStatus(204)
+
+        const result = await Course.deleteOne({_id: req.params.id})
+        if (result.deletedCount === 0) {
+            return res.sendStatus(404)
         }
+        res.sendStatus(204)
     }
     catch (err) {
+        console.log("Delete error:", err.message) // <-- посмотри что выводит сервер
         res.status(400).send(err.message)
     }
 })
