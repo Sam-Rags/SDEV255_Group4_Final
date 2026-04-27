@@ -8,7 +8,6 @@ const bodyParser = require('body-parser')
 const Student = require('./models/students')
 const Course = require('./models/courses')
 const Instructor = require('./models/instructors')
-require('./db')
 app.use(cors())
 app.use(bodyParser.json())
 
