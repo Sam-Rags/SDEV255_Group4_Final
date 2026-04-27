@@ -9,6 +9,7 @@ async function deleteCourse(id, courseName) {
 
         if (!response.ok) {
             alert("Failed to delete course. Please try again.");
+            console.log(`"Response status: " + ${response.status}`)
             return;
         }
 
