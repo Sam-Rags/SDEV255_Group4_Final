@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course List</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts/delete.js" defer></script>
+    <script src="scripts/script.js" defer></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2 class="logo">DevCrew</h2>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="add-course.html">Add Course</a>
+    </div>
+</nav>
+<div class="hero">
+    <h1>Course Management Dashboard</h1>
+    <p>Manage, view, and organize college courses easily</p>
+
+    <a href="add-course.html" class="primary-btn">+ Add New Course</a>
+</div>
+<div class="stats">
+    <div class="card">
+        <h3 id="totalCourses">0</h3>
+        <p>Total Courses</p>
+    </div>
+
+    <div class="card">
+        <h3>Active</h3>
+        <p>Status</p>
+    </div>
+</div>
+<div class="section">
+    <h2>Available Courses</h2>
+
+
+         <div id="courseList"></div>
+
+
+</div>
+</body>
+</html>
