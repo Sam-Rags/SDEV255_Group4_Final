@@ -111,7 +111,7 @@ router.post("/courses", auth, async(req, res) => {
 })
 
 // Edit a selected course
-router.put("/courses/:id", async(req, res) => {
+router.put("/courses/:id", auth, async(req, res) => {
     try {
         const course = req.body
         await Course.updateOne({_id: req.params.id}, course)
@@ -124,7 +124,7 @@ router.put("/courses/:id", async(req, res) => {
 })
 
 // Delete a course by ID
-router.delete("/courses/:id", async(req, res) => {
+router.delete("/courses/:id", auth, async(req, res) => {
     try {
         const mongoose = require('mongoose');
 
