@@ -8,6 +8,11 @@ const bodyParser = require('body-parser')
 const Student = require('./models/students')
 const Course = require('./models/courses')
 const Instructor = require('./models/instructors')
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+const User = require("./models/users")
+const auth = require("./scripts/auth")
+require("dotenv").config()
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -21,6 +26,52 @@ router.get("/students", async(req, res) => {
     catch (err) {
         console.log(err)
     }   
+})
+
+//Register a new user to the DB with hashed password
+router.post("/register", async(req, res) => {
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
+        const user = new User({
+            username: req.body.username,
+            password: hashedPassword
+        })
+
+        await user.save()
+        res.status(201).json({ message: "User registered successfully" })
+    }
+    catch (err) {
+        res.status(400).json({ error: err.message })
+    }
+})
+
+// Login a user and return a JWT token
+router.post("/login", async(req, res) => {
+    try {
+        const user = await User.findOne({ username: req.body.username })
+
+        if (!user) {
+            return res.status(401).json({ message: "Invalid username" })
+        }
+
+        const validPassword = await bcrypt.compare(req.body.password, user.password)
+
+        if (!validPassword) {
+            return res.status(401).json({ message: "Invalid password" })
+        }
+
+        const token = jwt.sign(
+            { userId: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        )
+
+        res.json({ token })
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message })
+    }
 })
 
 // Gets all of the courses from the DB
@@ -47,7 +98,7 @@ router.get("/courses/:id", async(req, res) => {
 })
 
 // Add a course to the DB
-router.post("/courses", async(req, res) => {
+router.post("/courses", auth, async(req, res) => {
     try {
         const course = await new Course(req.body)
         await course.save()
