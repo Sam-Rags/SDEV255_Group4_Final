@@ -4,7 +4,10 @@ async function deleteCourse(id, courseName) {
 
     try {
         const response = await fetch(`https://sdev255-group4-final.onrender.com/api/courses/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
         });
 
         if (!response.ok) {

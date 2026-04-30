@@ -29,6 +29,9 @@ addEventListener("DOMContentLoaded", async function() {
 
             const response = await fetch("https://sdev255-group4-final.onrender.com/api/courses/" + courseID, {
                 method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+            }
                 
             })
             alert("Course: " + courseID + " successfully deleted.")
@@ -52,6 +55,7 @@ addEventListener("DOMContentLoaded", async function() {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         body: JSON.stringify(course)
     })

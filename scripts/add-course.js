@@ -15,7 +15,8 @@ async function addCourse() {
     const response  = await fetch("https://sdev255-group4-final.onrender.com/api/courses/", {
     method: "POST",
     headers: {
-        "Content-Type" : "application/json"
+        "Content-Type" : "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
     },
     body : JSON.stringify(course)
 })
