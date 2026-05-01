@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Create Account</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -12,29 +12,47 @@
     <h2 class="logo">DevCrew</h2>
     <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
     </div>
 </nav>
 
 <div class="hero">
-    <h1>Login</h1>
-    <p>Access your dashboard</p>
+    <h1>Join DevCrew</h1>
+    <p>Create your account to access courses and tools</p>
 </div>
 
 <div class="section">
-    <h2>Sign In</h2>
+    <h2>Register</h2>
 
-    <form id="loginForm" class="form-container">
-        <input type="text" id="username" placeholder="Username" required>
-        <br><br>
+    <div class="form-container">
+        <form id="registerForm">
 
-        <input type="password" id="password" placeholder="Password" required>
-        <br><br>
+            <label for="username"><strong>Username</strong></label><br>
+            <input type="text" id="username" placeholder="Choose a username" required>
+            <br><br>
 
-        <button type="submit">Login</button>
-    </form>
+            <label for="password"><strong>Password</strong></label><br>
+            <input type="password" id="password" placeholder="Create a password" required>
+            <br><br>
+
+            <label for="role"><strong>Select Role</strong></label><br>
+            <select id="role" required>
+                <option value="">-- Choose Role --</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+            <br><br>
+
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+
+    <p style="margin-top: 20px;">
+        Already registered?
+        <a href="login.html">Sign in here</a>
+    </p>
 </div>
 
-<script src="scripts/login.js"></script>
+<script src="scripts/register.js"></script>
 </body>
 </html>
