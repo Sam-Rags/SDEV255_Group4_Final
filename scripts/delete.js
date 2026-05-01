@@ -1,25 +1,27 @@
 async function deleteCourse(id, courseName) {
-    console.log("Deleting ID:", id);
-    if (!confirm(`Delete "${courseName}"?`)) return;
+    const token = localStorage.getItem("token")
+    if (!token) return alert("You must be logged in")
+
+    if (!confirm(`Delete "${courseName}"?`)) return
 
     try {
-        const response = await fetch(`https://sdev255-group4-final.onrender.com/api/courses/${id}`, {
+        const res = await fetch(`https://sdev255-group4-final.onrender.com/api/courses/${id}`, {
             method: "DELETE",
             headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
+                "Authorization": "Bearer " + token
             }
-        });
+        })
 
-        if (!response.ok) {
-            alert("Failed to delete course. Please try again.");
-            console.log(`"Response status: " + ${response.status}`)
-            return;
+        if (!res.ok) {
+            alert("Failed to delete course")
+            return
         }
 
-        document.getElementById(`course-${id}`)?.remove();
-
-    } catch (err) {
-        console.error("Delete error:", err);
-        alert("Server error. Please check your connection.");
+        alert("Course deleted")
+        location.reload()
+    }
+    catch (err) {
+        console.error(err)
+        alert("Server error")
     }
 }
