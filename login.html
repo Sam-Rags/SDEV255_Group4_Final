@@ -1,35 +1,40 @@
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault()
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-    const username = document.getElementById("username").value
-    const password = document.getElementById("password").value
+<body>
 
-    try {
-        const res = await fetch("https://sdev255-group4-final.onrender.com/api/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        })
+<nav class="navbar">
+    <h2 class="logo">DevCrew</h2>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+    </div>
+</nav>
 
-        const data = await res.json()
+<div class="hero">
+    <h1>Login</h1>
+    <p>Access your dashboard</p>
+</div>
 
-        if (!res.ok) {
-            alert(data.message || "Login failed")
-            return
-        }
+<div class="section">
+    <h2>Sign In</h2>
 
-        // Save token + role + username
-        localStorage.setItem("token", data.token)
-        localStorage.setItem("role", data.role)
-        localStorage.setItem("username", data.username)
+    <form id="loginForm" class="form-container">
+        <input type="text" id="username" placeholder="Username" required>
+        <br><br>
 
-        alert("Login successful!")
+        <input type="password" id="password" placeholder="Password" required>
+        <br><br>
 
-        // Redirect to homepage (or wherever your main UI is)
-        window.location.href = "index.html"
-    }
-    catch (err) {
-        console.error(err)
-        alert("Error logging in")
-    }
-})
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<script src="scripts/login.js"></script>
+</body>
+</html>
