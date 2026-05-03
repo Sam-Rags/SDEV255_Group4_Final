@@ -6,7 +6,7 @@ async function deleteCourse(id, courseName) {
     if (!confirm(`Delete "${courseName}"?`)) return
 
     try {
-        const res = await fetch(`https://sdev255-group4-final.onrender.com/api/courses/${id}`, {
+        const res = await fetch(`https://module6-project.onrender.com/api/courses/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": "Bearer " + token

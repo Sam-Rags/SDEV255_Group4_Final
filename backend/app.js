@@ -285,5 +285,5 @@ router.get("/instructors", async (req, res) => {
 
 app.use("/api", router)
 app.listen(3000, () => {
-    console.log("Server is running on https://sdev255-group4-final.onrender.com/")
+    console.log("Server is running on https://module6-project.onrender.com")
 })

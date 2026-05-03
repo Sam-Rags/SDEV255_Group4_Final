@@ -33,7 +33,7 @@ function logout() {
 
 async function loadCourses() {
     try {
-        const res = await fetch("https://sdev255-group4-final.onrender.com/api/courses")
+        const res = await fetch(`${API_URL}/api/courses`)
         const courses = await res.json()
 
         document.getElementById("totalCourses").textContent = courses.length
@@ -109,7 +109,7 @@ async function addToSchedule(courseId) {
     if (!token) return alert("You must be logged in")
 
     try {
-        const res = await fetch(`https://sdev255-group4-final.onrender.com/api/schedule/add/${courseId}`, {
+        const res = await fetch(`${API_URL}/api/schedule/add/${courseId}`, {
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + token

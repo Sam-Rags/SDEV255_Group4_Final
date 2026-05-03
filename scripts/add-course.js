@@ -13,7 +13,7 @@ async function addCourse(e) {
         description:    document.querySelector("#description").value
     }
 
-    const response = await fetch("https://sdev255-group4-final.onrender.com/api/courses/", {
+    const response = await fetch("https://module6-project.onrender.com/api/courses/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

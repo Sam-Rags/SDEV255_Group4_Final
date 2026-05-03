@@ -6,7 +6,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     const role = document.getElementById("role").value
 
     try {
-        const res = await fetch("https://sdev255-group4-final.onrender.com/api/register", {
+        const res = await fetch(`${API_URL}/api/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password, role })

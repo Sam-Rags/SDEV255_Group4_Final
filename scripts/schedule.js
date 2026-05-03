@@ -37,7 +37,7 @@ async function loadSchedule() {
     const list = document.getElementById("scheduleList")
 
     try {
-        const res = await fetch("https://sdev255-group4-final.onrender.com/api/schedule", {
+        const res = await fetch(`${API_URL}/api/schedule`, {
             headers: { "Authorization": "Bearer " + token }
         })
 
@@ -99,7 +99,7 @@ async function dropCourse(courseId) {
     if (!confirm("Are you sure you want to drop this course?")) return
 
     try {
-        const res = await fetch(`https://sdev255-group4-final.onrender.com/api/schedule/drop/${courseId}`, {
+        const res = await fetch(`${API_URL}/api/schedule/drop/${courseId}`, {
             method: "DELETE",
             headers: { "Authorization": "Bearer " + token }
         })
