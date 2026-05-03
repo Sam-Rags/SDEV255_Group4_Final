@@ -1,17 +1,28 @@
+// Resolved merge conflict: kept the version that sends the auth token, required by the backend
 async function deleteCourse(id, courseName) {
-    console.log("Deleting ID:", id);
+    const token = localStorage.getItem("token")
+    if (!token) return alert("You must be logged in")
 
-    if (!confirm(`Delete "${courseName}"?`)) return;
+    if (!confirm(`Delete "${courseName}"?`)) return
 
     try {
-        await fetch(`https://sdev255-group4-final.onrender.com/api/courses/${id}`, {
-            method: "DELETE"
-        });
+        const res = await fetch(`https://sdev255-group4-final.onrender.com/api/courses/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        })
 
-        document.getElementById(`course-${id}`)?.remove();
+        if (!res.ok) {
+            alert("Failed to delete course")
+            return
+        }
 
-    } catch (err) {
-        console.error("Delete error:", err);
-        alert("Server error. Please check your connection.");
+        alert("Course deleted")
+        location.reload()
+    }
+    catch (err) {
+        console.error(err)
+        alert("Server error")
     }
 }
