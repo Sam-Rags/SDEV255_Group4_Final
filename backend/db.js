@@ -1,6 +1,8 @@
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const mongoose = require('mongoose')
-const uri = "mongodb+srv://sdev255:bzX3Nx5oAlvvVXxr@sdev255-group4-db.cuhjnr4.mongodb.net/?appName=sdev255-group4-db";
+require("dotenv").config()
+const uri = process.env.MONGODB_URI
+// Credentials moved to .env to prevent exposure in source control
 
 async function run() {
   try {

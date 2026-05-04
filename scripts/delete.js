@@ -1,3 +1,4 @@
+// Resolved merge conflict: kept the version that sends the auth token, required by the backend
 async function deleteCourse(id, courseName) {
     const token = localStorage.getItem("token")
     if (!token) return alert("You must be logged in")
@@ -5,7 +6,7 @@ async function deleteCourse(id, courseName) {
     if (!confirm(`Delete "${courseName}"?`)) return
 
     try {
-        const res = await fetch(`https://sdev255-group4-final.onrender.com/api/courses/${id}`, {
+        const res = await fetch(`https://module6-project.onrender.com/api/courses/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": "Bearer " + token

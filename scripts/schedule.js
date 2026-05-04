@@ -37,7 +37,7 @@ async function loadSchedule() {
     const list = document.getElementById("scheduleList")
 
     try {
-        const res = await fetch("https://sdev255-group4-final.onrender.com/api/schedule", {
+        const res = await fetch(`${API_URL}/api/schedule`, {
             headers: { "Authorization": "Bearer " + token }
         })
 
@@ -54,12 +54,29 @@ async function loadSchedule() {
             const div = document.createElement("div")
             div.className = "course-card"
 
-            div.innerHTML = `
-                <h3>${course.courseName}</h3>
-                <p><strong>Course #:</strong> ${course.courseNumber}</p>
-                <p><strong>Credits:</strong> ${course.credits}</p>
-                <p>${course.description}</p>
-            `
+            // Build card using DOM methods instead of innerHTML to prevent XSS
+            const h3 = document.createElement("h3")
+            h3.textContent = course.courseName
+
+            const p1 = document.createElement("p")
+            const strong1 = document.createElement("strong")
+            strong1.textContent = "Course #:"
+            p1.appendChild(strong1)
+            p1.append(" " + course.courseNumber)
+
+            const p2 = document.createElement("p")
+            const strong2 = document.createElement("strong")
+            strong2.textContent = "Credits:"
+            p2.appendChild(strong2)
+            p2.append(" " + course.credits)
+
+            const p3 = document.createElement("p")
+            p3.textContent = course.description
+
+            div.appendChild(h3)
+            div.appendChild(p1)
+            div.appendChild(p2)
+            div.appendChild(p3)
 
             // Drop button
             const dropBtn = document.createElement("button")
@@ -82,7 +99,7 @@ async function dropCourse(courseId) {
     if (!confirm("Are you sure you want to drop this course?")) return
 
     try {
-        const res = await fetch(`https://sdev255-group4-final.onrender.com/api/schedule/drop/${courseId}`, {
+        const res = await fetch(`${API_URL}/api/schedule/drop/${courseId}`, {
             method: "DELETE",
             headers: { "Authorization": "Bearer " + token }
         })
@@ -90,7 +107,7 @@ async function dropCourse(courseId) {
         const data = await res.json()
         alert(data.message)
 
-        loadSchedule() // refresh list
+        loadSchedule()
     }
     catch (err) {
         console.error(err)

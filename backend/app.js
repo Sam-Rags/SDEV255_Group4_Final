@@ -8,13 +8,17 @@ const bodyParser = require('body-parser')
 const Student = require('./models/students')
 const Course = require('./models/courses')
 const Instructor = require('./models/instructors')
+require("dotenv").config()
+// Uncommented: database must be connected before any route handlers run
+require('./db')
+
+
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const User = require("./models/users")
-const auth = require("../scripts/auth")
-const { requireRole } = require("../scripts/auth")
+const auth = require("./scripts/auth")
+const { requireRole } = require("./scripts/auth")
 const mongoose = require("mongoose")
-require("dotenv").config()
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -268,16 +272,18 @@ router.delete("/schedule/drop/:courseId", auth, requireRole("student"), async (r
 // Get the instructor list from the DB
 router.get("/instructors", async (req, res) => {
     try {
-        const instrcutors = await Instructor.find({})
-        res.send(instrcutors)
-        console.log("Instructor list: " + instrcutors)
+        // Fixed typo: instrcutors → instructors
+        const instructors = await Instructor.find({})
+        res.send(instructors)
+        console.log("Instructor list: " + instructors)
     }
     catch (er) {
-        console.log(err)
+        // Fixed: was logging undefined 'err'; parameter is named 'er'
+        console.log(er)
     }
 })
 
 app.use("/api", router)
 app.listen(3000, () => {
-    console.log("Server is running on https://sdev255-group4-final.onrender.com/")
+    console.log("Server is running on https://module6-project.onrender.com")
 })
