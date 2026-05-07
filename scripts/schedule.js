@@ -114,3 +114,11 @@ async function dropCourse(courseId) {
         alert("Error dropping course")
     }
 }
+
+const loggedIn = document.querySelector(".loginName")
+    if (localStorage.getItem("token")) {
+        const user = localStorage.getItem("username")
+        loggedIn.innerHTML = "Welcome, " + user
+        loggedIn.style.color = "White"
+        loggedIn.style.margin = 0
+    }

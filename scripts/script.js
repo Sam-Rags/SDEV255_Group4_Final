@@ -13,7 +13,15 @@ function applyRoleUI() {
         if (role !== "teacher") link.style.display = "none"
     })
 
-    // Add logout button if logged in
+    const loggedIn = document.querySelector(".loginName")
+    if (localStorage.getItem("token")) {
+        const user = localStorage.getItem("username")
+        loggedIn.innerHTML = "Welcome, " + user
+        loggedIn.style.color = "White"
+        loggedIn.style.margin = 0
+    }
+
+    // Add logout button if logged in & hide login button
     const nav = document.querySelector(".nav-links")
     if (localStorage.getItem("token")) {
         const logoutBtn = document.createElement("a")
@@ -21,6 +29,8 @@ function applyRoleUI() {
         logoutBtn.href = "#"
         logoutBtn.onclick = logout
         nav.appendChild(logoutBtn)
+        document.querySelector("#loginBtn").style.display = "none"
+        document.querySelector("#schedBtn").style.display = "inline"
     }
 }
 
