@@ -17,8 +17,7 @@ function applyRoleUI() {
     if (localStorage.getItem("token")) {
         const user = localStorage.getItem("username")
         loggedIn.innerHTML = "Welcome, " + user
-        loggedIn.style.color = "White"
-        loggedIn.style.margin = 0
+        loggedIn.classList.add("logged-in-user")
     }
 
     // Add logout button if logged in & hide login button
