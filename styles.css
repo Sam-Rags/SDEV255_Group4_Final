@@ -72,6 +72,10 @@ body {
     color: white;
     transform: translateY(-3px);
 }
+.logged-in-user {
+    color: white;
+    margin: 0;
+}
 
 /* Stats Cards */
 .stats {
